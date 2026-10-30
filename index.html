@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roadster Dash คำสั่ง</title>
+<meta name="description" content="รายชื่อคำสั่งคนดู (eventName) ของ Roadster Dash LIVE สำหรับตั้งของขวัญในแอป Kaitunshop">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap">
+<style>
+  :root {
+    --bg: #f7f1fa; --card: #ffffff; --ink: #23192e; --dim: #6c5f7a; --line: #eadff0;
+    --chip: #2a1c3d; --chip-ink: #ffd34d; --soft: #f3ecf7;
+    --help: #1c9d57; --help-bg: #e5f7ec; --prank: #e2402f; --prank-bg: #fde9e6; --gold: #b98600;
+    --sky: linear-gradient(160deg, #3b2263 0%, #7a3f8f 45%, #e0688f 80%, #ffb07a 100%);
+    --shadow: 0 1px 2px rgba(60, 30, 80, .06), 0 6px 20px rgba(60, 30, 80, .06);
+    --mono: ui-monospace, "Cascadia Code", Consolas, "Roboto Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #150f20; --card: #1f1730; --ink: #f2ecf8; --dim: #a898ba; --line: #2f2443;
+    --chip: #0f0a18; --chip-ink: #ffd34d; --soft: #281e3b;
+    --help: #2fcf72; --help-bg: #15301f; --prank: #ff5a48; --prank-bg: #37181a; --gold: #ffd34d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3); color-scheme: dark; } }
+  :root[data-theme="dark"] {
+    --bg: #150f20; --card: #1f1730; --ink: #f2ecf8; --dim: #a898ba; --line: #2f2443;
+    --chip: #0f0a18; --chip-ink: #ffd34d; --soft: #281e3b;
+    --help: #2fcf72; --help-bg: #15301f; --prank: #ff5a48; --prank-bg: #37181a; --gold: #ffd34d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3); color-scheme: dark; }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 "Kanit", "Segoe UI", sans-serif; -webkit-text-size-adjust: 100%; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+  /* Header: dusk sky */
+  header { background: var(--sky); color: #fff; padding: 40px 0 30px; position: relative; overflow: hidden; }
+  header::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
+    background: repeating-linear-gradient(90deg, #ffd34d 0 28px, transparent 28px 52px); opacity: .85; }
+  .tag { display: inline-block; font: 600 13px/1 "Kanit", sans-serif; letter-spacing: .08em; background: #ff5a48; color: #fff; padding: 6px 10px; border-radius: 999px; }
+  .tag::before { content: "● "; }
+  h1 { font: 700 clamp(32px, 8vw, 46px)/1.1 "Kanit", sans-serif; margin: 12px 0 6px; text-shadow: 0 2px 12px rgba(40, 10, 60, .35); }
+  h1 span { color: #ffd34d; }
+  .lead { margin: 0; opacity: .92; font-weight: 300; }
+  .syntax { margin-top: 18px; background: rgba(20, 8, 35, .38); border: 1px solid rgba(255, 255, 255, .18); border-radius: 14px; padding: 14px 16px; backdrop-filter: blur(4px); }
+  .syntax .big { font: 600 22px/1.3 var(--mono); color: #ffd34d; }
+  .syntax .big i { color: #ffd9e6; font-style: normal; font-weight: 400; }
+  .syntax ul { margin: 6px 0 0; padding-left: 20px; font-size: 15px; }
+
+  main { padding: 22px 0 10px; display: grid; gap: 22px; }
+  section { background: var(--card); border-radius: 18px; box-shadow: var(--shadow); border: 1px solid var(--line); overflow: hidden; min-width: 0; }
+  .sec-h { display: flex; align-items: center; gap: 10px; padding: 14px 18px; font: 600 21px/1.2 "Kanit", sans-serif; }
+  .sec-h small { font: 400 14px/1 "Kanit", sans-serif; color: var(--dim); margin-left: auto; }
+  .help .sec-h { background: var(--help-bg); color: var(--help); }
+  .prank .sec-h { background: var(--prank-bg); color: var(--prank); }
+  .dot { width: 12px; height: 12px; border-radius: 50%; background: currentColor; flex: none; }
+
+  /* Command row */
+  .cmd { padding: 14px 18px; border-top: 1px solid var(--line); }
+  .sec-h + .cmd { border-top: 0; }
+  .top { display: flex; align-items: center; gap: 10px; }
+  .top .name { flex: 1; min-width: 0; line-height: 1.3; }
+  .args { white-space: nowrap; }
+  .chip { font: 700 20px/1 var(--mono); color: var(--chip-ink); background: var(--chip); border: 0; border-radius: 10px; padding: 10px 14px; cursor: pointer; letter-spacing: .01em;
+    box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .35); transition: transform .08s; }
+  .chip:hover { filter: brightness(1.15); } .chip:active { transform: translateY(1px); }
+  .chip:focus-visible, .q:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .args { font: 500 16px/1 var(--mono); color: var(--dim); }
+  .name { font-weight: 600; font-size: 18px; }
+  .q { margin-left: auto; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--soft); color: var(--dim); font: 600 16px/1 "Kanit", sans-serif; cursor: pointer; flex: none; }
+  .q[aria-expanded="true"] { background: var(--gold); border-color: var(--gold); color: #23192e; }
+  .desc { margin: 6px 0 0; color: var(--dim); }
+  .more { margin-top: 10px; background: var(--soft); border-radius: 12px; padding: 10px 14px; font-size: 15.5px; }
+  .more ul { margin: 0; padding-left: 18px; } .more li + li { margin-top: 3px; }
+  code { font: 600 .92em/1 var(--mono); background: var(--soft); color: var(--ink); padding: 3px 7px; border-radius: 6px; white-space: nowrap; }
+  .more code { background: var(--card); }
+
+  /* Notes + keys */
+  .plain .sec-h { border-bottom: 1px solid var(--line); }
+  .list { margin: 0; padding: 12px 18px 16px 38px; }
+  .list li { margin: 6px 0; }
+  .alias { display: flex; flex-wrap: wrap; gap: 6px 8px; margin-top: 8px; }
+  .alias span { background: var(--soft); border-radius: 8px; padding: 3px 9px; font: 500 14px/1.5 var(--mono); }
+  .keys { padding: 6px 18px 14px; }
+  .key { display: grid; grid-template-columns: minmax(120px, max-content) 1fr; gap: 14px; align-items: center; padding: 9px 0; border-top: 1px solid var(--line); }
+  .key:first-child { border-top: 0; }
+  kbd { display: inline-block; font: 600 14px/1 var(--mono); background: var(--soft); border: 1px solid var(--line); border-bottom-width: 3px; border-radius: 7px; padding: 6px 9px; margin: 2px 0; }
+
+  footer { text-align: center; color: var(--dim); font-size: 14px; padding: 18px 16px 40px; }
+  footer b { color: var(--ink); font-weight: 600; }
+
+  .toast { position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 20px); background: #2fcf72; color: #08240f; font: 600 15px/1 "Kanit", sans-serif;
+    padding: 11px 18px; border-radius: 999px; box-shadow: 0 6px 24px rgba(0, 0, 0, .25); opacity: 0; pointer-events: none; transition: opacity .18s, transform .18s; }
+  .toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 480px) {
+    body { font-size: 16px; }
+    .cmd { padding: 13px 14px; } .sec-h { padding: 13px 14px; }
+    .chip { font-size: 18px; padding: 9px 12px; }
+    .key { grid-template-columns: 1fr; gap: 4px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .toast, .chip { transition: none; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <span class="tag">LIVE</span>
+    <h1>Roadster <span>Dash</span> คำสั่ง</h1>
+    <p class="lead">ชื่อคำสั่ง (eventName) สำหรับตั้งของขวัญใน Game Action · แตะชื่อคำสั่งเพื่อคัดลอก</p>
+    <div class="syntax">
+      <div class="big">คำสั่ง <i>[n]</i></div>
+      <ul>
+        <li><b>n</b> = แรง / จำนวน · ไม่ใส่ = 1 · สูงสุด 20</li>
+        <li>ส่งของขวัญ xN = ทำงาน N ครั้ง</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="help" aria-labelledby="h-help">
+    <div class="sec-h" id="h-help"><span class="dot"></span>ช่วย<small>7 คำสั่ง</small></div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">missile</button><span class="args">[n] [x]</span><span class="name">มิสไซล์ช่วยดัน</span><button class="q" aria-label="รายละเอียด missile">?</button></div>
+      <p class="desc">มิสไซล์บินมาเสียบท้ายรถ ดันลูกละ 4 วิ</p>
+      <div class="more" hidden><ul>
+        <li><b>n</b> = จำนวนลูก (ไม่ใส่ = 1)</li>
+        <li><b>x</b> = ความแรง (ไม่ใส่ = ปกติ) · <code>x2</code> หรือ <code>2</code> = แรง 2 เท่า · ใส่ได้ 0.5–4</li>
+        <li>ติดพร้อมกันได้ 3 ลูก: เร็ว ×1.5 / ×1.9 / ×2.2 · ลูกที่ 4 ดีดลูกเก่าสุดหลุด</li>
+        <li>ระหว่างดัน ชนรถคันอื่น = รถนั้นกระเด็น ไม่ตาย</li>
+        <li>ตัวอย่าง: <code>missile</code> · <code>missile 3</code> · <code>missile 2 x2</code></li>
+      </ul></div>
+    </div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">push</button><span class="args">[n]</span><span class="name">ดันพุ่ง</span><button class="q" aria-label="รายละเอียด push">?</button></div>
+      <p class="desc">ดันพุ่งไปข้างหน้าทันที แรงขึ้นตาม n</p>
+      <div class="more" hidden>ช่วงสั้นๆ หลังดัน ชนแล้วไม่ตาย</div>
+    </div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">shield</button><span class="name">โล่</span></div>
+      <p class="desc">กันการชน หรือของแกล้งที่โดนตัวรถได้ 1 ครั้ง</p>
+    </div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">shockwave</button><span class="name">คลื่นกระแทก</span></div>
+      <p class="desc">ล้างรถรอบตัว + ล้างกับดักบนถนน</p>
+    </div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">ludi</button><span class="name">โหมดลูดิครัส</span><button class="q" aria-label="รายละเอียด ludi">?</button></div>
+      <p class="desc">เร็ว + อมตะ 5 วิ ต่อ n</p>
+      <div class="more" hidden>พิมพ์เต็มเป็น <code>ludicrous</code> ก็ได้ · <code>ludi 3</code> = 15 วิ</div>
+    </div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">star</button><span class="name">ดาวอมตะ</span></div>
+      <p class="desc">อมตะ 8 วิ</p>
+    </div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">fuel</button><span class="name">เติม AIR</span></div>
+      <p class="desc">เติม AIR เต็ม (ใช้บิน)</p>
+    </div>
+  </section>
+
+  <section class="prank" aria-labelledby="h-prank">
+    <div class="sec-h" id="h-prank"><span class="dot"></span>แกล้ง<small>7 คำสั่ง</small></div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">back</button><span class="args">[n]</span><span class="name">ดันถอยหลัง</span><button class="q" aria-label="รายละเอียด back">?</button></div>
+      <p class="desc">ดันรถถอยหลัง แรงขึ้นตาม n</p>
+      <div class="more" hidden>ถ้ามีคนช่วยดันกับดันถอยมาพร้อมกัน แรงจะหักลบกัน</div>
+    </div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">bomb</button><span class="args">[n]</span><span class="name">ระเบิดตกตามเลน</span><button class="q" aria-label="รายละเอียด bomb">?</button></div>
+      <p class="desc">ระเบิด n ลูก (สูงสุด 6)</p>
+      <div class="more" hidden><ul>
+        <li>มีเสาแสงแดงเตือนก่อนตกประมาณ 1.5 วิ</li>
+        <li>เว้นเลนว่างให้หลบได้เสมอ</li>
+      </ul></div>
+    </div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">traffic</button><span class="args">[n]</span><span class="name">รถขวางทาง</span><button class="q" aria-label="รายละเอียด traffic">?</button></div>
+      <p class="desc">ปล่อยรถมาขวางเป็นแถว เว้น 1 เลน</p>
+      <div class="more" hidden>มีชื่อคนส่งลอยอยู่เหนือรถที่ปล่อยมา</div>
+    </div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">oil</button><span class="args">[n]</span><span class="name">คราบน้ำมัน</span></div>
+      <p class="desc">คราบน้ำมันบนถนน เหยียบแล้วไถลเปลี่ยนเลนเอง</p>
+    </div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">reverse</button><span class="args">[n]</span><span class="name">ปุ่มกลับด้าน</span></div>
+      <p class="desc">ปุ่มซ้าย/ขวากลับด้าน 6 วิ ต่อ n</p>
+    </div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">dark</button><span class="args">[n]</span><span class="name">ปิดไฟ</span></div>
+      <p class="desc">จอมืด เหลือแค่ไฟหน้ารถ 10 วิ ต่อ n</p>
+    </div>
+
+    <div class="cmd">
+      <div class="top"><button class="chip">freeze</button><span class="args">[n]</span><span class="name">แช่แข็ง</span></div>
+      <p class="desc">เปลี่ยนเลนไม่ได้ 1.5 วิ ต่อ n</p>
+    </div>
+  </section>
+
+  <section class="plain" aria-labelledby="h-note">
+    <div class="sec-h" id="h-note">หมายเหตุ</div>
+    <ul class="list">
+      <li><b>โล่</b> กันของแกล้งที่โดนตัวรถ: <code>back</code> <code>reverse</code> <code>dark</code> <code>freeze</code> <code>oil</code></li>
+      <li>ชื่อคนส่งขึ้นกล่องแจ้งเตือน + ป้ายขอบคุณข้างถนน</li>
+      <li>รองรับชื่อคำสั่งของเกมแข่งรถ1 (RacingCraft) ด้วย · ต่อท้าย <code>_me</code> ได้
+        <div class="alias">
+          <span>nitro → push</span><span>banana → oil</span><span>hole / airstrike → bomb</span>
+          <span>tornado → traffic</span><span>slowahead / slowbehind → back</span><span>jelly → reverse</span>
+          <span>blackhole → dark</span><span>wheeloff → freeze</span><span>godcar → star</span>
+          <span>legend → ludi</span><span>upgrade / regen → fuel</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="plain" aria-labelledby="h-keys">
+    <div class="sec-h" id="h-keys">ปุ่มของสตรีมเมอร์</div>
+    <div class="keys">
+      <div class="key"><span><kbd>←</kbd> <kbd>→</kbd> / <kbd>A</kbd> <kbd>D</kbd></span><span>เปลี่ยนเลน</span></div>
+      <div class="key"><span><kbd>Space</kbd></span><span>กระโดด · กดค้าง = บิน (ใช้ AIR)</span></div>
+      <div class="key"><span><kbd>Shift</kbd></span><span>บูสต์ (ใช้ AIR)</span></div>
+      <div class="key"><span><kbd>↓</kbd></span><span>กระแทกลง</span></div>
+      <div class="key"><span><kbd>Esc</kbd></span><span>หยุด / ตั้งค่า</span></div>
+    </div>
+  </section>
+</main>
+
+<footer><b>Roadster Dash</b> by morpii · ระบบ LIVE</footer>
+<div class="toast" role="status" aria-live="polite"></div>
+
+<script>
+  const toast = document.querySelector('.toast');
+  let timer;
+  function copy(text) {
+    // clipboard API needs https/localhost; fall back to execCommand for file://
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    const t = document.createElement('textarea');
+    t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); } finally { t.remove(); }
+    return Promise.resolve();
+  }
+  document.addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if (chip) {
+      copy(chip.textContent).then(() => {
+        toast.textContent = 'คัดลอกแล้ว: ' + chip.textContent;
+        toast.classList.add('on');
+        clearTimeout(timer); timer = setTimeout(() => toast.classList.remove('on'), 1400);
+      });
+      return;
+    }
+    const q = e.target.closest('.q');
+    if (q) {
+      const more = q.closest('.cmd').querySelector('.more');
+      more.hidden = !more.hidden;
+      q.setAttribute('aria-expanded', String(!more.hidden));
+    }
+  });
+  document.querySelectorAll('.q').forEach(q => q.setAttribute('aria-expanded', 'false'));
+</script>
+</body>
+</html>
