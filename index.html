@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Roadster Dash คำสั่ง</title>
-<meta name="description" content="รายชื่อคำสั่งคนดู (eventName) ของ Roadster Dash LIVE สำหรับตั้งของขวัญในแอป Kaitunshop">
+<meta name="description" content="คำสั่งของขวัญ Roadster Dash LIVE สำหรับใส่ในแอป TikConnector แยกช่วย / แกล้ง พร้อมรูปตัวละคร">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap">
 <style>
   :root {
     --bg: #f7f1fa; --card: #ffffff; --ink: #23192e; --dim: #6c5f7a; --line: #eadff0;
-    --chip: #2a1c3d; --chip-ink: #ffd34d; --soft: #f3ecf7;
+    --chip: #2a1c3d; --chip-ink: #ffd34d; --soft: #f3ecf7; --stage: #2a1c3d;
     --help: #1c9d57; --help-bg: #e5f7ec; --prank: #e2402f; --prank-bg: #fde9e6; --gold: #b98600;
     --sky: linear-gradient(160deg, #3b2263 0%, #7a3f8f 45%, #e0688f 80%, #ffb07a 100%);
     --shadow: 0 1px 2px rgba(60, 30, 80, .06), 0 6px 20px rgba(60, 30, 80, .06);
@@ -19,65 +19,76 @@
   }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
     --bg: #150f20; --card: #1f1730; --ink: #f2ecf8; --dim: #a898ba; --line: #2f2443;
-    --chip: #0f0a18; --chip-ink: #ffd34d; --soft: #281e3b;
+    --chip: #0f0a18; --chip-ink: #ffd34d; --soft: #281e3b; --stage: #120c1e;
     --help: #2fcf72; --help-bg: #15301f; --prank: #ff5a48; --prank-bg: #37181a; --gold: #ffd34d;
     --shadow: 0 1px 2px rgba(0, 0, 0, .3); color-scheme: dark; } }
   :root[data-theme="dark"] {
     --bg: #150f20; --card: #1f1730; --ink: #f2ecf8; --dim: #a898ba; --line: #2f2443;
-    --chip: #0f0a18; --chip-ink: #ffd34d; --soft: #281e3b;
+    --chip: #0f0a18; --chip-ink: #ffd34d; --soft: #281e3b; --stage: #120c1e;
     --help: #2fcf72; --help-bg: #15301f; --prank: #ff5a48; --prank-bg: #37181a; --gold: #ffd34d;
     --shadow: 0 1px 2px rgba(0, 0, 0, .3); color-scheme: dark; }
-
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 "Kanit", "Segoe UI", sans-serif; -webkit-text-size-adjust: 100%; }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
 
-  /* Header: dusk sky */
-  header { background: var(--sky); color: #fff; padding: 40px 0 30px; position: relative; overflow: hidden; }
+  header { background: var(--sky); color: #fff; padding: 36px 0 28px; position: relative; overflow: hidden; }
   header::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
     background: repeating-linear-gradient(90deg, #ffd34d 0 28px, transparent 28px 52px); opacity: .85; }
   .tag { display: inline-block; font: 600 13px/1 "Kanit", sans-serif; letter-spacing: .08em; background: #ff5a48; color: #fff; padding: 6px 10px; border-radius: 999px; }
   .tag::before { content: "● "; }
-  h1 { font: 700 clamp(32px, 8vw, 46px)/1.1 "Kanit", sans-serif; margin: 12px 0 6px; text-shadow: 0 2px 12px rgba(40, 10, 60, .35); }
+  h1 { font: 700 clamp(32px, 8vw, 46px)/1.1 "Kanit", sans-serif; margin: 12px 0 6px; text-shadow: 0 2px 12px rgba(40, 10, 60, .35); text-wrap: balance; }
   h1 span { color: #ffd34d; }
-  .lead { margin: 0; opacity: .92; font-weight: 300; }
-  .syntax { margin-top: 18px; background: rgba(20, 8, 35, .38); border: 1px solid rgba(255, 255, 255, .18); border-radius: 14px; padding: 14px 16px; backdrop-filter: blur(4px); }
-  .syntax .big { font: 600 22px/1.3 var(--mono); color: #ffd34d; }
-  .syntax .big i { color: #ffd9e6; font-style: normal; font-weight: 400; }
-  .syntax ul { margin: 6px 0 0; padding-left: 20px; font-size: 15px; }
+  .lead { margin: 0; opacity: .92; font-weight: 300; max-width: 62ch; }
+  .syntax { margin-top: 16px; background: rgba(20, 8, 35, .38); border: 1px solid rgba(255, 255, 255, .18); border-radius: 14px; padding: 12px 16px; backdrop-filter: blur(4px); max-width: 640px; }
+  .syntax ul { margin: 0; padding-left: 20px; font-size: 15.5px; }
+  .syntax code { background: rgba(255,255,255,.14); color: #ffd34d; }
 
-  main { padding: 22px 0 10px; display: grid; gap: 22px; }
+  nav.jump { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+  nav.jump a { font: 600 16px/1 "Kanit", sans-serif; color: #fff; text-decoration: none; padding: 10px 16px; border-radius: 999px; background: rgba(20, 8, 35, .4); border: 1px solid rgba(255,255,255,.25); }
+  nav.jump a.h { background: #1c9d57; border-color: #1c9d57; } nav.jump a.p { background: #e2402f; border-color: #e2402f; }
+
+  main { padding: 22px 0 10px; display: grid; gap: 26px; }
+  .side-h { display: flex; align-items: center; gap: 10px; font: 700 28px/1.2 "Kanit", sans-serif; margin: 6px 0 -8px; scroll-margin-top: 12px; }
+  .side-h.help { color: var(--help); } .side-h.prank { color: var(--prank); }
+  .dot { width: 14px; height: 14px; border-radius: 50%; background: currentColor; flex: none; }
   section { background: var(--card); border-radius: 18px; box-shadow: var(--shadow); border: 1px solid var(--line); overflow: hidden; min-width: 0; }
-  .sec-h { display: flex; align-items: center; gap: 10px; padding: 14px 18px; font: 600 21px/1.2 "Kanit", sans-serif; }
-  .sec-h small { font: 400 14px/1 "Kanit", sans-serif; color: var(--dim); margin-left: auto; }
-  .help .sec-h { background: var(--help-bg); color: var(--help); }
-  .prank .sec-h { background: var(--prank-bg); color: var(--prank); }
-  .dot { width: 12px; height: 12px; border-radius: 50%; background: currentColor; flex: none; }
+  .sec-h { padding: 14px 18px 4px; font: 600 21px/1.25 "Kanit", sans-serif; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .sec-h code { font-size: 15px; }
+  .sec-p { margin: 0; padding: 0 18px 12px; color: var(--dim); font-size: 15.5px; }
+  .help .sec-h { color: var(--help); } .prank .sec-h { color: var(--prank); }
 
-  /* Command row */
-  .cmd { padding: 14px 18px; border-top: 1px solid var(--line); }
-  .sec-h + .cmd { border-top: 0; }
-  .top { display: flex; align-items: center; gap: 10px; }
-  .top .name { flex: 1; min-width: 0; line-height: 1.3; }
-  .args { white-space: nowrap; }
-  .chip { font: 700 20px/1 var(--mono); color: var(--chip-ink); background: var(--chip); border: 0; border-radius: 10px; padding: 10px 14px; cursor: pointer; letter-spacing: .01em;
-    box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .35); transition: transform .08s; }
-  .chip:hover { filter: brightness(1.15); } .chip:active { transform: translateY(1px); }
-  .chip:focus-visible, .q:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
-  .args { font: 500 16px/1 var(--mono); color: var(--dim); }
+  /* Character cards */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; padding: 4px 18px 18px; }
+  .ch { background: var(--soft); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+  .ch .pic { position: relative; aspect-ratio: 1; max-width: 100%; background: radial-gradient(circle at 50% 62%, rgba(255,255,255,.16), transparent 62%), var(--stage); }
+  .help .ch .pic { background: radial-gradient(circle at 50% 62%, rgba(47,207,114,.35), transparent 62%), var(--stage); }
+  .prank .ch .pic { background: radial-gradient(circle at 50% 62%, rgba(255,90,72,.35), transparent 62%), var(--stage); }
+  .ch img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .lv { position: absolute; left: 8px; top: 8px; font: 700 13px/1 "Kanit", sans-serif; color: #23192e; background: #ffd34d; padding: 5px 8px; border-radius: 999px; }
+  .cut { position: absolute; right: 8px; top: 8px; font: 600 12px/1 "Kanit", sans-serif; color: #fff; background: rgba(0,0,0,.55); padding: 5px 7px; border-radius: 999px; }
+  .ch .body { padding: 9px 10px 11px; display: grid; gap: 6px; }
+  .ch .nm { font-weight: 600; font-size: 16.5px; line-height: 1.25; overflow-wrap: anywhere; }
+  .ch .chip { width: 100%; text-align: center; font-size: 15px; padding: 8px 6px; white-space: normal; overflow-wrap: anywhere; }
+
+  /* Plain command rows */
+  .cmd { padding: 13px 18px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 4px 14px; align-items: center; }
+  .rows .cmd:first-child { border-top: 0; }
+  .ico { grid-row: span 2; width: 48px; height: 48px; border-radius: 12px; background: var(--soft); display: grid; place-items: center; font-size: 26px; overflow: hidden; }
+  .ico img { width: 100%; height: 100%; object-fit: contain; }
+  .top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-width: 0; }
   .name { font-weight: 600; font-size: 18px; }
-  .q { margin-left: auto; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--soft); color: var(--dim); font: 600 16px/1 "Kanit", sans-serif; cursor: pointer; flex: none; }
-  .q[aria-expanded="true"] { background: var(--gold); border-color: var(--gold); color: #23192e; }
-  .desc { margin: 6px 0 0; color: var(--dim); }
-  .more { margin-top: 10px; background: var(--soft); border-radius: 12px; padding: 10px 14px; font-size: 15.5px; }
-  .more ul { margin: 0; padding-left: 18px; } .more li + li { margin-top: 3px; }
-  code { font: 600 .92em/1 var(--mono); background: var(--soft); color: var(--ink); padding: 3px 7px; border-radius: 6px; white-space: nowrap; }
-  .more code { background: var(--card); }
+  .args { font: 500 15px/1 var(--mono); color: var(--dim); }
+  .desc { margin: 0; color: var(--dim); font-size: 15.5px; }
 
-  /* Notes + keys */
-  .plain .sec-h { border-bottom: 1px solid var(--line); }
+  .chip { font: 700 18px/1 var(--mono); color: var(--chip-ink); background: var(--chip); border: 0; border-radius: 10px; padding: 9px 12px; cursor: pointer; letter-spacing: .01em;
+    box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .35); transition: transform .08s; white-space: nowrap; }
+  .chip:hover { filter: brightness(1.15); } .chip:active { transform: translateY(1px); }
+  .chip:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  code { font: 600 .92em/1 var(--mono); background: var(--soft); color: var(--ink); padding: 3px 7px; border-radius: 6px; white-space: nowrap; }
+
+  .plain .sec-h { border-bottom: 1px solid var(--line); padding-bottom: 12px; }
   .list { margin: 0; padding: 12px 18px 16px 38px; }
-  .list li { margin: 6px 0; }
+  .list li { margin: 7px 0; }
   .alias { display: flex; flex-wrap: wrap; gap: 6px 8px; margin-top: 8px; }
   .alias span { background: var(--soft); border-radius: 8px; padding: 3px 9px; font: 500 14px/1.5 var(--mono); }
   .keys { padding: 6px 18px 14px; }
@@ -87,15 +98,15 @@
 
   footer { text-align: center; color: var(--dim); font-size: 14px; padding: 18px 16px 40px; }
   footer b { color: var(--ink); font-weight: 600; }
-
   .toast { position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 20px); background: #2fcf72; color: #08240f; font: 600 15px/1 "Kanit", sans-serif;
     padding: 11px 18px; border-radius: 999px; box-shadow: 0 6px 24px rgba(0, 0, 0, .25); opacity: 0; pointer-events: none; transition: opacity .18s, transform .18s; }
   .toast.on { opacity: 1; transform: translate(-50%, 0); }
 
   @media (max-width: 480px) {
     body { font-size: 16px; }
-    .cmd { padding: 13px 14px; } .sec-h { padding: 13px 14px; }
-    .chip { font-size: 18px; padding: 9px 12px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 4px 12px 14px; }
+    .cmd { padding: 12px 14px; } .sec-h { padding: 13px 14px 4px; } .sec-p { padding: 0 14px 10px; }
+    .chip { font-size: 16px; padding: 8px 10px; }
     .key { grid-template-columns: 1fr; gap: 4px; }
   }
   @media (prefers-reduced-motion: reduce) { .toast, .chip { transition: none; } }
@@ -106,170 +117,82 @@
   <div class="wrap">
     <span class="tag">LIVE</span>
     <h1>Roadster <span>Dash</span> คำสั่ง</h1>
-    <p class="lead">ชื่อคำสั่ง (eventName) สำหรับตั้งของขวัญใน Game Action · แตะชื่อคำสั่งเพื่อคัดลอก</p>
-    <div class="syntax">
-      <div class="big">คำสั่ง <i>[n]</i></div>
-      <ul>
-        <li><b>n</b> = แรง / จำนวน · ไม่ใส่ = 1 · สูงสุด 20</li>
-        <li>ส่งของขวัญ xN = ทำงาน N ครั้ง</li>
-      </ul>
-    </div>
+    <p class="lead">ใส่ในช่อง <b>command</b> ของกฎใน TikConnector (การกระทำ WebSocket) · แตะปุ่มคำสั่งเพื่อคัดลอก</p>
+    <div class="syntax"><ul>
+      <li>ของขวัญ 1 ชิ้น = คำสั่งทำงาน 1 ครั้ง · ส่ง x10 = 10 ครั้ง</li>
+      <li>ตัวเลขท้ายคำสั่ง = ระดับ / จำนวน เช่น <code>push 3</code> <code>bomb 4</code> · ไม่ใส่ = 1</li>
+      <li>ยิ่งของแพง ยิ่งใส่ระดับสูง: แรงกว่า ดันนานกว่า ระดับ 3–5 มีคัทซีนเปิดตัว</li>
+    </ul></div>
+    <nav class="jump"><a class="h" href="#help">😇 ช่วย</a><a class="p" href="#prank">😈 แกล้ง</a><a href="#rules">📜 กติกา</a></nav>
   </div>
 </header>
 
 <main class="wrap">
-  <section class="help" aria-labelledby="h-help">
-    <div class="sec-h" id="h-help"><span class="dot"></span>ช่วย<small>7 คำสั่ง</small></div>
+  <h2 class="side-h help" id="help"><span class="dot"></span>ช่วย</h2>
 
-    <div class="cmd">
-      <div class="top"><button class="chip">missile</button><span class="args">[n] [x]</span><span class="name">มิสไซล์ช่วยดัน</span><button class="q" aria-label="รายละเอียด missile">?</button></div>
-      <p class="desc">มิสไซล์บินมาเสียบท้ายรถ ดันลูกละ 4 วิ</p>
-      <div class="more" hidden><ul>
-        <li><b>n</b> = จำนวนลูก (ไม่ใส่ = 1)</li>
-        <li><b>x</b> = ความแรง (ไม่ใส่ = ปกติ) · <code>x2</code> หรือ <code>2</code> = แรง 2 เท่า · ใส่ได้ 0.5–4</li>
-        <li>ติดพร้อมกันได้ 3 ลูก: เร็ว ×1.5 / ×1.9 / ×2.2 · ลูกที่ 4 ดีดลูกเก่าสุดหลุด</li>
-        <li>ระหว่างดัน ชนรถคันอื่น = รถนั้นกระเด็น ไม่ตาย</li>
-        <li>ตัวอย่าง: <code>missile</code> · <code>missile 3</code> · <code>missile 2 x2</code></li>
-      </ul></div>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">push</button><span class="args">[ระดับ 1–5]</span><span class="name">ดันพุ่ง</span><button class="q" aria-label="รายละเอียด push">?</button></div>
-      <p class="desc">ฮีโร่วิ่งมาจากหลังรถ ต่อยดันไปข้างหน้า · ไม่ใส่ = ระดับ 1</p>
-      <div class="more" hidden><ul><li>ระดับยิ่งสูงยิ่งแรง: 1 Echo Echo · 2 Goop · 3 Chromastone · 4 Way Big (ยักษ์) · 5 Alien X (ยักษ์)</li><li>แต่ละระดับมีเพดาน: ส่งระดับ 1 รัวๆ ก็ไม่แรงเท่าระดับ 5 ครั้งเดียว</li><li>ระดับ 4–5 ตีแล้วรถรอบๆ กระเด็น · ช่วงสั้นๆ หลังดัน ชนแล้วไม่ตาย</li><li>ระดับ 5 มีฉากเปิดตัว 3 วิ (เกมหยุด ตัดไปเวที) แล้วพุ่งมาดันทันที</li></ul></div>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">ally</button><span class="args">[1-5 | ชื่อ]</span><span class="name">ฮีโร่ช่วยดัน</span><button class="q" aria-label="รายละเอียด ally">?</button></div>
-      <p class="desc">ฮีโร่วิ่งมาหลังรถ ต่อยดันรถไปข้างหน้าต่อเนื่อง 4–6 วิ</p>
-      <div class="more" hidden><ul>
-        <li>เบา → แรง · 1: อุซป (usopp) · 2: ซันจิ / อิจิโกะ (sanji, ichigo) · 3: โซโล / ลอว์ (zoro, law) · 4: แชงคูส / มาร์โค (shanks, marco) · 5: หนวดขาว (whitebeard) ดันพุ่งแรงสุด</li>
-        <li>ใส่ชื่อแทนเลขได้ เช่น <code>ally zoro</code> · ดันพร้อมกันได้ฝั่งละหลายตัว</li>
-        <li>ถ้ามีวายร้ายขวางอยู่ จะดันสู้กันผ่านรถ มีแถบบอกฝั่งไหนแรงกว่า</li>
-        <li>ระดับ 5 (หนวดขาว / ไคโด) มีฉากเปิดตัว 3 วิ แล้วพุ่งมาทันที</li>
-        <li>ระหว่างดัน รถที่วิ่งเข้ามาโดนชนกระเด็น</li>
-      </ul></div>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">shield</button><span class="name">โล่</span></div>
-      <p class="desc">กันการชน หรือของแกล้งที่โดนตัวรถได้ 1 ครั้ง</p>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">shockwave</button><span class="name">คลื่นกระแทก</span></div>
-      <p class="desc">ล้างรถรอบตัว + ล้างกับดักบนถนน</p>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">ludi</button><span class="name">โหมดลูดิครัส</span><button class="q" aria-label="รายละเอียด ludi">?</button></div>
-      <p class="desc">เร็ว + อมตะ 5 วิ ต่อ n</p>
-      <div class="more" hidden>พิมพ์เต็มเป็น <code>ludicrous</code> ก็ได้ · <code>ludi 3</code> = 15 วิ</div>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">star</button><span class="name">ดาวอมตะ</span></div>
-      <p class="desc">อมตะ 8 วิ</p>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">fuel</button><span class="name">เติม AIR</span></div>
-      <p class="desc">เติม AIR เต็ม (ใช้บิน)</p>
-    </div>
+  <section class="help">
+    <div class="sec-h">⏩ ฮีโร่ดันพุ่ง <code>push 1–5</code></div>
+    <p class="sec-p">ฮีโร่วิ่งมาจากหลังรถ ต่อยดันไปข้างหน้า แล้วรถพุ่งค้างไว้ ระดับ 1 = 1 วิ ถึงระดับ 5 = 6 วิ</p>
+    <div class="grid" data-set="push"></div>
   </section>
 
-  <section class="prank" aria-labelledby="h-prank">
-    <div class="sec-h" id="h-prank"><span class="dot"></span>แกล้ง<small>6 คำสั่ง</small></div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">back</button><span class="args">[ระดับ 1–5]</span><span class="name">ดันถอยหลัง</span><button class="q" aria-label="รายละเอียด back">?</button></div>
-      <p class="desc">วายร้ายดักหน้ารถ เตะรถถอยหลัง · ไม่ใส่ = ระดับ 1</p>
-      <div class="more" hidden><ul><li>1: ลุชชี่ · 2: กริมจอว์ · 3: คิซารุ · 4: อาโอคิจิ (ยักษ์) · 5: ไคโด (บอส ดันกลับถึงฐาน)</li><li>ถอยไปชนฐานที่จุดเริ่ม ฐานเสีย HP · ฐานหมด = แพ้</li><li>โล่กันได้</li></ul></div>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">bomb</button><span class="args">[n]</span><span class="name">ระเบิดตกตามเลน</span><button class="q" aria-label="รายละเอียด bomb">?</button></div>
-      <p class="desc">ระเบิด n ลูก (สูงสุด 6)</p>
-      <div class="more" hidden><ul>
-        <li>มีเสาแสงแดงเตือนก่อนตกประมาณ 1.5 วิ</li>
-        <li>เว้นเลนว่างให้หลบได้เสมอ</li>
-      </ul></div>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">traffic</button><span class="args">[n]</span><span class="name">รถขวางทาง</span><button class="q" aria-label="รายละเอียด traffic">?</button></div>
-      <p class="desc">ปล่อยรถมาขวางเป็นแถว เว้น 1 เลน</p>
-      <div class="more" hidden>มีชื่อคนส่งลอยอยู่เหนือรถที่ปล่อยมา</div>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">wrongway</button><span class="args">[n]</span><span class="name">รถสวนเลน</span><button class="q" aria-label="รายละเอียด wrongway">?</button></div>
-      <p class="desc">รถวิ่งสวนพุ่งเข้าหา n คัน (สูงสุด 3)</p>
-      <div class="more" hidden><ul>
-        <li>บางคันส่ายข้ามเลนไปมา ต้องโดดหลบ</li>
-        <li>รถคันไหนขวางทาง โดนชนกระเด็น</li>
-        <li>เล่นไปเรื่อยๆ ก็มีรถสวนมาเองนานๆ ที</li>
-      </ul></div>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">rival</button><span class="args">[1-5 | ชื่อ]</span><span class="name">วายร้ายดันกลับ</span><button class="q" aria-label="รายละเอียด rival">?</button></div>
-      <p class="desc">วายร้ายยืนขวางหน้ารถ ต่อยดันรถถอยหลัง</p>
-      <div class="more" hidden><ul>
-        <li>เบา → แรง · 1: ลุชชี่ / เคนปาจิ (lucci, kenpachi) · 2: หนวดดำ / กริมจอว์ (blackbeard, grimmjow) · 3: ไอเซ็น / คิซารุ (aizen, kizaru) · 4: อาคาอินุ / อาโอคิจิ (akainu, aokiji) · 5: ไคโด (kaido) ถอยรถแรงสุด</li>
-        <li>ใส่ชื่อแทนเลขได้ เช่น <code>rival kaido</code></li>
-        <li>ถ้ามีฮีโร่ดันอยู่ด้วย จะดันสู้กันผ่านรถ ฝั่งที่แรงหมดก่อนปลิว ฝั่งชนะปล่อยท่าไม้ตาย</li>
-      </ul></div>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">banana</button><span class="args">[n]</span><span class="name">เปลือกกล้วย</span><button class="q" aria-label="รายละเอียด banana">?</button></div>
-      <p class="desc">วางเปลือกกล้วย n อัน (สูงสุด 20) เหยียบแล้วลื่นหมุนไปอีกเลน</p>
-      <div class="more" hidden><ul><li>ลื่นไปชนขอบถนน รอด · ลื่นไปชนรถ = รถพังกระเด็นถอย</li><li>บังคับรถไม่ได้ประมาณ 1 วิ · โล่กันได้</li></ul></div>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">oil</button><span class="args">[n]</span><span class="name">คราบน้ำมัน</span></div>
-      <p class="desc">คราบน้ำมันบนถนน เหยียบแล้วไถลเปลี่ยนเลนเอง</p>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">reverse</button><span class="args">[n]</span><span class="name">ปุ่มกลับด้าน</span></div>
-      <p class="desc">ปุ่มซ้าย/ขวากลับด้าน 6 วิ ต่อ n</p>
-    </div>
-
-    <div class="cmd">
-      <div class="top"><button class="chip">freeze</button><span class="args">[n]</span><span class="name">แช่แข็ง</span></div>
-      <p class="desc">เปลี่ยนเลนไม่ได้ 1.5 วิ ต่อ n</p>
-    </div>
+  <section class="help">
+    <div class="sec-h">🦸 ฮีโร่ช่วยดัน <code>ally ชื่อ</code></div>
+    <p class="sec-p">ยืนดันหลังรถต่อเนื่อง 5–8 วิ ตามระดับ · ใส่เลขแทนชื่อได้ เช่น <code>ally 3</code> = สุ่มตัวระดับ 3 · ถ้าเจอวายร้ายจะดันสู้กันผ่านรถ</p>
+    <div class="grid" data-set="ally"></div>
   </section>
 
-  <section class="plain" aria-labelledby="h-note">
-    <div class="sec-h" id="h-note">หมายเหตุ</div>
+  <section class="help">
+    <div class="sec-h">🎁 ของช่วยอื่นๆ</div>
+    <div class="rows" data-set="helpItems"></div>
+  </section>
+
+  <h2 class="side-h prank" id="prank"><span class="dot"></span>แกล้ง</h2>
+
+  <section class="prank">
+    <div class="sec-h">⏪ วายร้ายเตะถอยหลัง <code>back 1–5</code></div>
+    <p class="sec-p">ดักหน้ารถแล้วเตะถอย ระดับสูงถอยเร็วและนานกว่า · ระดับ 5 ไคโด ดันกลับถึงฐาน · ถอยไปชนฐาน = ฐานเสีย HP</p>
+    <div class="grid" data-set="back"></div>
+  </section>
+
+  <section class="prank">
+    <div class="sec-h">🦹 วายร้ายดันกลับ <code>rival ชื่อ</code></div>
+    <p class="sec-p">ยืนขวางหน้ารถ ดันถอยหลังต่อเนื่อง 5–8 วิ · ใส่เลขแทนชื่อได้ เช่น <code>rival 4</code></p>
+    <div class="grid" data-set="rival"></div>
+  </section>
+
+  <section class="prank">
+    <div class="sec-h">🎁 ของแกล้งอื่นๆ</div>
+    <div class="rows" data-set="prankItems"></div>
+  </section>
+
+  <section class="plain" id="rules">
+    <div class="sec-h">📜 กติกา</div>
     <ul class="list">
-        <li>ของช่วยหรือของแกล้งหมดตัวสุดท้ายแล้ว รถจะกระพริบอมตะ 2.5 วิ ชนไม่แพ้</li>
-        <li>ชนครั้งแรกรถแค่บุบ วิ่งต่อได้ · ชนอีกภายใน 30 วิ = จบรอบ · ครบ 30 วิรถซ่อมคืน</li>
-      <li><b>โล่</b> กันของแกล้งที่โดนตัวรถ: <code>back</code> <code>reverse</code>  <code>freeze</code> <code>oil</code></li>
-      <li>ชื่อคนส่งขึ้นกล่องแจ้งเตือน + ป้ายขอบคุณข้างถนน</li>
+      <li><b>เส้นชัย 5,000 m</b> · ถึงแล้วรถหยุดบนเส้น นับ 6 วิ · ถ้าโดนดันถอยออกจากเส้น เริ่มนับใหม่ · นับครบ = ชนะ</li>
+      <li><b>ฐานที่จุดเริ่ม HP 1,000</b> · รถโดนดันถอยไปชนฐาน ฐานเสีย HP · ฐานหมด = แพ้</li>
+      <li><b>ชนรถครั้งแรก</b> แค่บุบ วิ่งต่อได้ รถค่อยๆ ซ่อมใน 60 วิ · <b>ชนอีกภายใน 60 วิ</b> = ยุบทั้งคัน กระเด็นถอยหลัง ~300 m</li>
+      <li><b>คัทซีน</b>: ระดับ 5 ได้เปิดตัวเสมอ (ตัดคัทซีนเล็กที่เล่นอยู่) · ระดับ 3–4 เปิดตัวเมื่อจอว่าง ถ้ามีคัทซีนอยู่จะวิ่งเข้ามาเลยไม่ต้องรอ</li>
+      <li>ระหว่างโดนดัน ชนรถคันอื่น = รถนั้นกระเด็น ไม่บุบ</li>
+      <li><b>อันดับคนส่งเพชร</b> ดูได้ในเกม: Esc → 🏆 อันดับคนส่งเพชร</li>
       <li>รองรับชื่อคำสั่งของเกมแข่งรถ1 (RacingCraft) ด้วย · ต่อท้าย <code>_me</code> ได้
         <div class="alias">
-          <span>nitro → push</span><span>hole / airstrike → bomb</span>
+          <span>nitro → push</span><span>hero → ally</span><span>villain → rival</span><span>hole / airstrike → bomb</span>
           <span>tornado → traffic</span><span>slowahead / slowbehind → back</span><span>jelly → reverse</span>
-          <span>blackhole → bomb</span><span>wheeloff → freeze</span><span>godcar → star</span>
-          <span>legend → ludi</span><span>upgrade / regen → fuel</span>
+          <span>wheeloff → freeze</span><span>godcar → star</span><span>legend → ludi</span><span>upgrade / regen → fuel</span>
         </div>
       </li>
     </ul>
   </section>
 
-  <section class="plain" aria-labelledby="h-keys">
-    <div class="sec-h" id="h-keys">ปุ่มของสตรีมเมอร์</div>
+  <section class="plain">
+    <div class="sec-h">🎮 ปุ่มของสตรีมเมอร์</div>
     <div class="keys">
       <div class="key"><span><kbd>←</kbd> <kbd>→</kbd> / <kbd>A</kbd> <kbd>D</kbd></span><span>เปลี่ยนเลน</span></div>
       <div class="key"><span><kbd>Space</kbd></span><span>กระโดด · กดค้าง = บิน (ใช้ AIR)</span></div>
       <div class="key"><span><kbd>Shift</kbd></span><span>บูสต์ (ใช้ AIR)</span></div>
       <div class="key"><span><kbd>↓</kbd></span><span>กระแทกลง</span></div>
-      <div class="key"><span><kbd>Esc</kbd></span><span>หยุด / ตั้งค่า</span></div>
+      <div class="key"><span><kbd>Esc</kbd></span><span>หยุด / ตั้งค่า / อันดับ</span></div>
     </div>
   </section>
 </main>
@@ -278,12 +201,57 @@
 <div class="toast" role="status" aria-live="polite"></div>
 
 <script>
+  // [command, name, picture, level, cut-in]
+  const SETS = {
+    push: [['push 1', 'เอคโค่ เอคโค่', 't1_echo', 1], ['push 2', 'กู๊ป', 't2_goop', 2], ['push 3', 'โครมาสโตน', 't3_chroma', 3, 1],
+      ['push 4', 'เวย์บิ๊ก (ยักษ์)', 't4_waybig', 4, 1], ['push 5', 'เอเลี่ยน X (ยักษ์)', 't5_alienx', 5, 1]],
+    ally: [['ally usopp', 'อุซป', 'usopp', 1], ['ally sanji', 'ซันจิ', 'sanji', 2], ['ally ichigo', 'อิจิโกะ', 'ichigo', 2],
+      ['ally zoro', 'โซโล', 'zoro', 3, 1], ['ally law', 'ลอว์', 'law', 3, 1], ['ally shanks', 'แชงคูส', 'shanks', 4, 1],
+      ['ally marco', 'มาร์โค', 'marco', 4, 1], ['ally whitebeard', 'หนวดขาว', 'whitebeard', 5, 1]],
+    back: [['back 1', 'ลุชชี่', 'lucci', 1], ['back 2', 'กริมจอว์', 'grimmjow', 2], ['back 3', 'คิซารุ', 'kizaru', 3, 1],
+      ['back 4', 'อาโอคิจิ (ยักษ์)', 'aokiji', 4, 1], ['back 5', 'ไคโด (บอส)', 'kaido', 5, 1]],
+    rival: [['rival lucci', 'ลุชชี่', 'lucci', 1], ['rival kenpachi', 'เคนปาจิ', 'kenpachi', 1], ['rival blackbeard', 'หนวดดำ', 'blackbeard', 2],
+      ['rival grimmjow', 'กริมจอว์', 'grimmjow', 2], ['rival aizen', 'ไอเซ็น', 'aizen', 3, 1], ['rival kizaru', 'คิซารุ', 'kizaru', 3, 1],
+      ['rival akainu', 'อาคาอินุ', 'akainu', 4, 1], ['rival aokiji', 'อาโอคิจิ', 'aokiji', 4, 1], ['rival kaido', 'ไคโด', 'kaido', 5, 1]],
+  };
+  // [command, args, name, icon (emoji or img), description]
+  const ROWS = {
+    helpItems: [
+      ['missile', '[n] [x]', 'มิสไซล์ช่วยดัน', '🚀', 'บินมาเสียบท้ายรถ ดันลูกละ 4 วิ · ติดพร้อมกันได้ 3 ลูก · n = จำนวนลูก · x = ความแรง เช่น missile 2 x2'],
+      ['shield', '', 'โล่', '🛡️', 'กันการชน หรือของแกล้งที่โดนตัวรถได้ 1 ครั้ง'],
+      ['shockwave', '', 'คลื่นกระแทก', 'img/shockwave.png', 'ล้างรถรอบตัว + ล้างกับดักบนถนน'],
+      ['ludi', '[n]', 'โหมดลูดิครัส', 'img/ludicrous.png', 'เร็ว + อมตะ 5 วิ ต่อ n'],
+      ['star', '', 'ดาวอมตะ', '⭐', 'อมตะ 8 วิ'],
+      ['fuel', '', 'เติม AIR', '⛽', 'เติม AIR เต็ม (ใช้บิน / บูสต์)'],
+    ],
+    prankItems: [
+      ['bomb', '[n]', 'ระเบิดตกตามเลน', '💣', 'ระเบิด n ลูก (สูงสุด 6) มีแสงแดงเตือนก่อนตก เว้นเลนว่างให้หลบเสมอ'],
+      ['traffic', '[n]', 'รถขวางทาง', '🚚', 'ปล่อยรถมาขวางเป็นแถว เว้น 1 เลน'],
+      ['wrongway', '[n]', 'รถสวนเลน', '🚘', 'รถวิ่งสวนพุ่งเข้าหา n คัน (สูงสุด 3) บางคันส่ายข้ามเลน'],
+      ['banana', '[n]', 'เปลือกกล้วย', '🍌', 'วาง n อัน (สูงสุด 20) เหยียบแล้วลื่นไปอีกเลน · ลื่นไปชนรถ = ชน'],
+      ['oil', '[n]', 'คราบน้ำมัน', '🛢️', 'เหยียบแล้วไถลเปลี่ยนเลนเอง'],
+      ['reverse', '[n]', 'ปุ่มกลับด้าน', '🔄', 'ซ้าย/ขวากลับด้าน 6 วิ ต่อ n'],
+      ['freeze', '[n]', 'แช่แข็ง', '🧊', 'เปลี่ยนเลนไม่ได้ 1.5 วิ ต่อ n'],
+    ],
+  };
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  for (const el of document.querySelectorAll('.grid[data-set]')) {
+    el.innerHTML = SETS[el.dataset.set].map(([cmd, nm, pic, lv, cut]) => `<div class="ch">
+      <div class="pic"><img src="img/${pic}.png" alt="${esc(nm)}" loading="lazy"><span class="lv">ระดับ ${lv}</span>${cut ? '<span class="cut">🎬 คัทซีน</span>' : ''}</div>
+      <div class="body"><span class="nm">${esc(nm)}</span><button class="chip">${esc(cmd)}</button></div></div>`).join('');
+  }
+  for (const el of document.querySelectorAll('.rows[data-set]')) {
+    el.innerHTML = ROWS[el.dataset.set].map(([cmd, args, nm, icon, desc]) => `<div class="cmd">
+      <span class="ico">${icon.includes('/') ? `<img src="${icon}" alt="">` : icon}</span>
+      <div class="top"><button class="chip">${esc(cmd)}</button>${args ? `<span class="args">${esc(args)}</span>` : ''}<span class="name">${esc(nm)}</span></div>
+      <p class="desc">${esc(desc)}</p></div>`).join('');
+  }
+
   const toast = document.querySelector('.toast');
   let timer;
   function copy(text) {
-    // clipboard API needs https/localhost; fall back to execCommand for file://
     if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
-    const t = document.createElement('textarea');
+    const t = document.createElement('textarea');   // file:// fallback
     t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
     document.body.appendChild(t); t.select();
     try { document.execCommand('copy'); } finally { t.remove(); }
@@ -291,22 +259,13 @@
   }
   document.addEventListener('click', e => {
     const chip = e.target.closest('.chip');
-    if (chip) {
-      copy(chip.textContent).then(() => {
-        toast.textContent = 'คัดลอกแล้ว: ' + chip.textContent;
-        toast.classList.add('on');
-        clearTimeout(timer); timer = setTimeout(() => toast.classList.remove('on'), 1400);
-      });
-      return;
-    }
-    const q = e.target.closest('.q');
-    if (q) {
-      const more = q.closest('.cmd').querySelector('.more');
-      more.hidden = !more.hidden;
-      q.setAttribute('aria-expanded', String(!more.hidden));
-    }
+    if (!chip) return;
+    copy(chip.textContent).then(() => {
+      toast.textContent = 'คัดลอกแล้ว: ' + chip.textContent;
+      toast.classList.add('on');
+      clearTimeout(timer); timer = setTimeout(() => toast.classList.remove('on'), 1400);
+    });
   });
-  document.querySelectorAll('.q').forEach(q => q.setAttribute('aria-expanded', 'false'));
 </script>
 </body>
 </html>
