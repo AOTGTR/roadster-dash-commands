@@ -41,6 +41,7 @@
   h1 { font: 700 clamp(32px, 8vw, 46px)/1.1 "Kanit", sans-serif; margin: 12px 0 6px; text-shadow: 0 2px 12px rgba(40, 10, 60, .35); text-wrap: balance; }
   h1 span { color: #ffd34d; }
   .lead { margin: 0; opacity: .92; font-weight: 300; max-width: 62ch; }
+  .gameplay { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; background: #140823; }
   .syntax { margin-top: 16px; background: rgba(20, 8, 35, .38); border: 1px solid rgba(255, 255, 255, .18); border-radius: 14px; padding: 12px 16px; backdrop-filter: blur(4px); max-width: 640px; }
   .syntax ul { margin: 0; padding-left: 20px; font-size: 15.5px; }
   .syntax code { background: rgba(255,255,255,.14); color: #ffd34d; }
@@ -126,11 +127,16 @@
       <li>ยิ่งของแพง ยิ่งใส่ระดับสูง: แรงกว่า ดันนานกว่า ระดับ 3–5 มีคัทซีนเปิดตัว</li>
       <li>ตั้งชื่อกฎให้ตรงชื่อของขวัญ เช่น <code>กุหลาบ</code> <code>GG</code> คอมโบบนหัวรถถึงจะขึ้นรูป เช่น 🍌🌹 x57</li>
     </ul></div>
-    <nav class="jump"><a href="#preset">🎁 พรีเซ็ต</a><a class="h" href="#help">😇 ช่วย</a><a class="p" href="#prank">😈 แกล้ง</a><a href="#rules">📜 กติกา</a></nav>
+    <nav class="jump"><a href="#gameplay">🎬 เกมเพลย์</a><a href="#preset">🎁 พรีเซ็ต</a><a class="h" href="#help">😇 ช่วย</a><a class="p" href="#prank">😈 แกล้ง</a><a href="#rules">📜 กติกา</a></nav>
   </div>
 </header>
 
 <main class="wrap">
+  <section class="plain" id="gameplay">
+    <div class="sec-h">🎬 เกมเพลย์</div>
+    <video class="gameplay" src="gameplay.mp4" poster="img/gameplay.jpg" controls muted loop playsinline preload="metadata" aria-label="คลิปเกมเพลย์ Roadster Dash"></video>
+  </section>
+
   <section class="plain" id="preset">
     <div class="sec-h">🎁 พรีเซ็ตที่มากับเกม</div>
     <p class="sec-p">ไฟล์ <code>Journey_Roadster_Dash.jnt</code> ใน zip ของเกม นำเข้าใน TikConnector ได้เลย</p>
